@@ -18,7 +18,6 @@ app.use(express.urlencoded({ extended: true }));
 
 const usersController = new userController();
 
-
 app.get('/', (req, res) => { res.render('index'); });
 
 app.get('/register', usersController.getRegister);
