@@ -1,0 +1,87 @@
+<style>
+    .developer-photo {
+        width: 155px; 
+        height: 155px; 
+        margin: 0 auto 1.5rem;
+        overflow: hidden; 
+        border-radius: 50%; 
+        position: relative; 
+        padding: 5px;
+        background-color: #2b3035;
+    }
+
+    .developer-photo img {
+        width: 100%;
+        height: 100%; 
+        object-fit: cover;
+        border: 3px solid #ffc107; 
+        border-radius: 50%;
+        box-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
+    }
+
+    .social-icons{
+        width: 100%;
+        gap: 2em;
+        justify-content: center;
+        font-size: 1.4em;
+    }
+
+    .social-icons a{
+        text-decoration: none;
+        color: white;
+    }
+</style>
+
+<div class="container-fluid py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card p-5" style="background-color: #2b3035; border-radius: 12px; border: none; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+                <div class="card-body text-center">
+                    <h1 class="display-4 fw-bold text-white mb-3">About <span class="text-warning-custom">Easily</span></h1>
+                    <p class="lead text-white-50">
+                        Your one-stop solution to find your dream job or the perfect candidate. We're on a mission to simplify the hiring process, making it seamless and efficient for everyone.
+                    </p>
+                </div>
+
+                <div class="row align-items-center mt-5">
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <h2 class="h4 fw-bold text-white">Our Vision</h2>
+                        <p class="text-white-50">
+                            At Easily, we believe in a world where talent meets opportunity effortlessly. We provide a platform that connects skilled job seekers with forward-thinking recruiters, fostering growth and innovation. Our goal is to eliminate barriers and create a transparent, user-friendly experience for all.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="images/vision.png" alt="Our Vision" class="img-fluid rounded shadow">
+                    </div>
+                </div>
+
+                <div class="row align-items-center mt-5">
+                    <div class="col-md-6 order-md-2 mb-4 mb-md-0">
+                        <h2 class="h4 fw-bold text-white">How We Work</h2>
+                        <p class="text-white-50">
+                            Our platform is designed with simplicity and power in mind. Job seekers can create professional profiles, browse a wide range of job categories, and apply with just a few clicks. Recruiters can post new job openings, manage applications, and find top talent with our intuitive tools. We prioritize data security and user privacy, so you can connect with confidence.
+                        </p>
+                    </div>
+                    <div class="col-md-6 order-md-1">
+                        <img src="images/work.png" alt="How We Work" class="img-fluid rounded shadow">
+                    </div>
+                </div>
+
+                <div class="developer-section text-center mt-5">
+                    <div class="developer-photo">
+                        <img src="images/profile.jpg" alt="Ajay Koli">
+                    </div>
+                    <h4 class="fw-bold text-white mt-3">Built and Managed by <span class="text-warning-custom">Ajay Koli</span></h4>
+                    <p class="text-white-50">
+                        Easily is a testament to the power of clean design and efficient functionality. It is proudly built and managed by Ajay Koli to provide a superior job-seeking and recruitment experience.
+                    </p>
+                    <div class="social-icons mt-3 d-flex gap-3 text-center">
+                        <a href="https://www.linkedin.com/in/ajaykoli/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/aj_ay.2318/" target="_blank" aria-label="Instagram" ><i class="fab fa-instagram"></i></a>
+                        <a href="https://github.com/ajaymkoli" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

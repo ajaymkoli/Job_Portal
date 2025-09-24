@@ -1,0 +1,144 @@
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12">
+            <div class="card p-5 shadow-lg" style="background-color: #2b3035; border-radius: 12px; border: none;">
+                <div class="card-body">
+                    <h1 class="display-4 fw-bold text-white mb-2">Tech Solutions Inc.</h1>
+                    <h2 class="h4 text-warning-custom mb-4">Full Stack Developer</h2>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-3">
+                            <p class="text-white-50 mb-1"><i class="fa-solid fa-location-dot me-2"></i>Location:</p>
+                            <p class="fw-bold text-white fs-5">San Francisco, CA</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <p class="text-white-50 mb-1"><i class="fa-solid fa-money-bill-wave me-2"></i>Salary:</p>
+                            <p class="fw-bold text-white fs-5">$120,000 - $140,000</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <p class="text-white-50 mb-1"><i class="fa-solid fa-users me-2"></i>Total Positions:</p>
+                            <p class="fw-bold text-white fs-5">2</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <p class="text-white-50 mb-1"><i class="fa-solid fa-briefcase me-2"></i>Job Category:</p>
+                            <p class="fw-bold text-white fs-5">Software Engineering</p>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <h3 class="h5 fw-bold text-white mb-3">Job Description</h3>
+                        <p class="text-white-50 lh-base">We are seeking a highly motivated and skilled Full Stack Developer to join our innovative team. The ideal candidate will have a strong passion for technology and a desire to build high-quality, scalable web applications. You will be responsible for both front-end and back-end development, from designing user interactions to managing server-side logic and database operations. This is a great opportunity to work on cutting-edge projects and contribute to a collaborative, fast-paced environment.</p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h3 class="h5 fw-bold text-white mb-3">Skills Required</h3>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-warning text-dark p-2 rounded-pill fw-normal">HTML</span>
+                            <span class="badge bg-warning text-dark p-2 rounded-pill fw-normal">CSS</span>
+                            <span class="badge bg-warning text-dark p-2 rounded-pill fw-normal">Javascript</span>
+                            <span class="badge bg-warning text-dark p-2 rounded-pill fw-normal">ReactJs</span>
+                            <span class="badge bg-warning text-dark p-2 rounded-pill fw-normal">NodeJs</span>
+                            <span class="badge bg-warning text-dark p-2 rounded-pill fw-normal">MongoDB</span>
+                            <span class="badge bg-warning text-dark p-2 rounded-pill fw-normal">ExpressJs</span>
+                            <span class="badge bg-warning text-dark p-2 rounded-pill fw-normal">Git</span>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center mb-4">
+                        <div class="col-md-6 mb-3">
+                            <p class="text-white-50 mb-1"><i class="fa-solid fa-calendar-alt me-2"></i>Apply By:</p>
+                            <p class="fw-bold text-white fs-5">September 30, 2025</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <a href="/applicants" class="text-decoration-none">
+                                <p class="text-white-50 mb-1"><i class="fa-solid fa-clipboard-user me-2"></i>Applications received:</p>
+                                <p class="fw-bold text-white fs-5">5</p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="mb-4 text-white-50 fst-italic">
+                        Job Posted: September 24, 2025, 10:30 AM
+                    </div>
+
+                    <div class="text-center mt-5">
+                        <button type="button" class="btn btn-warning btn-lg fw-bold" data-bs-toggle="modal" data-bs-target="#applyModal" style="background-color: #ffc107; color: black; border: none; border-radius: 8px; padding: 12px 60px;">
+                            Apply Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Apply Now Modal -->
+<div class="modal fade" id="applyModal" tabindex="-1" aria-labelledby="applyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background-color: #2b3035; border: none; border-radius: 12px;">
+            <div class="modal-header" style="border-bottom: 1px solid #495057;">
+                <h5 class="modal-title fw-bold text-white" id="applyModalLabel">Apply for Full Stack Developer</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-white">
+                <form id="applicationForm">
+                    <div class="mb-3">
+                        <label for="fullName" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" style="background-color: #495057; color: white; border: none;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="email" placeholder="name@example.com" style="background-color: #495057; color: white; border: none;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="mobileNumber" class="form-label">Mobile Number</label>
+                        <input type="tel" class="form-control" id="mobileNumber" placeholder="e.g., +91 9876543210" style="background-color: #495057; color: white; border: none;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="resume" class="form-label">Resume (PDF format)</label>
+                        <input class="form-control" type="file" id="resume" accept=".pdf" style="background-color: #495057; color: white; border: none;">
+                    </div>
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-warning fw-bold" style="background-color: #ffc107; color: black; border: none;">Submit Application</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .text-warning-custom {
+        color: var(--primary);
+    }
+    .card {
+        background-color: #2b3035; /* Slightly lighter dark for card background */
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .badge.bg-warning {
+        background-color: var(--primary) !important; /* Ensure yellow badge color */
+        color: black !important;
+    }
+    .btn-warning {
+        background-color: var(--primary) !important;
+        color: black !important;
+        border: none;
+    }
+    .btn-warning:hover {
+        background-color: #e0ac00 !important; /* Darker yellow on hover */
+    }
+    .modal-content .form-label {
+        color: #f8f9fa;
+    }
+    .modal-content .form-control::placeholder {
+        color: #ced4da;
+        opacity: 0.6;
+    }
+    .modal-content .form-control:focus {
+        background-color: #495057;
+        color: white;
+        box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+    }
+</style>

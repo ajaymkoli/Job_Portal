@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Easily - Find Your Dream Job</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="styles/index.css"/>
+    <script src="https://kit.fontawesome.com/d16333e4a8.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-dark text-white" data-bs-theme="dark">
+      <div class="container-fluid gap-4">
+        <div class="d-flex align-items-center me-3 gap-2">
+          <i class="fa-solid fa-briefcase text-warning"></i>
+          <a class="navbar-brand text-warning fw-bold" href="/">easily</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2">
+            <li class="nav-item">
+              <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="/jobs">Jobs</a>
+            </li>
+            <li class="nav-item dropdown bg-body-dark bg-dark">
+              <a class="nav-link dropdown-toggle text-white" href="#"role="button" data-bs-toggle="dropdown" aria-expanded="false">Recruiters</a>
+              <ul class="dropdown-menu bg-dark">
+                <li><a class="dropdown-item text-white" href="/jobs">Posted Jobs</a></li>
+                <li><a class="dropdown-item text-white" href="/postjob">Post New Job</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item text-white" href="/login">
+                    Login &nbsp;&nbsp;&nbsp;
+                    <!-- <i class="fa-solid fa-right-from-bracket"></i> -->
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+            <button class="btn btn-outline-warning" type="submit"> Search </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div class="body"><%-body%></div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-4 mt-0">
+      <div class="container text-center text-md-left">
+        <div class="row text-center text-md-left">
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h5 class="text-uppercase mb-4 font-weight-bold text-warning">
+              About easily
+            </h5>
+            <p>
+              Your one-stop solution to find your dream job with ease. We offer a wide rande of job listings, and career resourses.
+            </p>
+          </div>
+
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h5 class="text-uppercase mb-4 font-weight-bold text-warning">
+              Quick Links
+            </h5>
+            <p>
+              <a href="/jobs" class="text-white" style="text-decoration: none"
+                >Find Jobs</a
+              >
+            </p>
+            <p>
+              <a href="/postjob" class="text-white" style="text-decoration: none"
+                >Post a Job</a
+              >
+            </p>
+            <p>
+              <a href="/about" class="text-white" style="text-decoration: none"
+                >About Us</a
+              >
+            </p>
+            <p>
+              <a href="#" class="text-white" style="text-decoration: none"
+                >Contact Us</a
+              >
+            </p>
+          </div>
+
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h5 class="text-uppercase mb-4 font-weight-bold text-warning">
+              Contact
+            </h5>
+            <p><i class="fas fa-home mr-3"></i> Pune, Maharashtra</p>
+            <p><i class="fas fa-envelope mr-3"></i> findjobs@easily.com</p>
+            <p><i class="fas fa-phone mr-3"></i> + 91 8767674098</p>
+          </div>
+        </div>
+
+        <hr class="mb-4" />
+
+        <div class="row align-items-center">
+          <div class="col-md-7 col-lg-8">
+            <p>
+              Copyright ©2025 All rights reserved by:
+              <a href="https://www.linkedin.com/in/ajaykoli/" style="text-decoration: none" target="_blank">
+                <strong class="text-warning">Ajay Koli</strong>
+              </a>
+            </p>
+          </div>
+
+          <div class="col-md-5 col-lg-4">
+            <div class="text-center text-md-right">
+              <ul class="list-unstyled list-inline">
+                <li class="list-inline-item">
+                  <a href="https://github.com/ajaymkoli" target="_blank" class="btn-floating btn-sm text-white" style="font-size: 23px">
+                    <i class="fa-brands fa-github"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="https://www.linkedin.com/in/ajaykoli/" target="_blank" class="btn-floating btn-sm text-white" style="font-size: 23px">
+                    <i class="fab fa-linkedin-in"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

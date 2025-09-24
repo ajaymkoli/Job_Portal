@@ -1,0 +1,155 @@
+<div class="container py-5">
+    <div class="card bg-dark text-white p-4 shadow-lg mx-auto" style="max-width: 600px; border-radius: 12px; border: none;">
+        <div class="card-body">
+            <h3 class="text-center font-weight-bold mb-4" style="color: white;">Post a New Job</h3>
+            <form>
+                <!-- Job Category and Designation -->
+                <div class="form-group mb-3">
+                    <label for="jobCategory" class="text-white-50">Job Category</label>
+                    <select class="form-control" id="jobCategory" style="background-color: #343a40; color: white; border: 1px solid #495057;">
+                        <option value="IT">IT</option>
+                        <option value="Non-IT">Non-IT</option>
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="jobDesignation" class="text-white-50">Job Designation</label>
+                    <select class="form-control" id="jobDesignation" style="background-color: #343a40; color: white; border: 1px solid #495057;">
+                        <option value="SDE">SDE</option>
+                        <option value="Frontend Web Developer">Frontend Web Developer</option>
+                        <option value="Android Development">Android Development</option>
+                        <option value="Backend Web Developer">Backend Web Developer</option>
+                        <option value="MERN Stack Developer">MERN Stack Developer</option>
+                        <option value="Full Stack Developer">Full Stack Developer</option>
+                    </select>
+                </div>
+
+                <!-- Company Name and Location -->
+                <div class="row">
+                    <div class="col-md-6 form-group mb-3">
+                        <label for="companyName" class="text-white-50">Company Name</label>
+                        <input type="text" class="form-control" id="companyName" placeholder="Enter Company Name" style="background-color: #343a40; color: white; border: 1px solid #495057;">
+                    </div>
+                    <div class="col-md-6 form-group mb-3">
+                        <label for="jobLocation" class="text-white-50">Job Location</label>
+                        <input type="text" class="form-control" id="jobLocation" placeholder="Enter Job Location" style="background-color: #343a40; color: white; border: 1px solid #495057;">
+                    </div>
+                </div>
+
+                <!-- Salary and Positions -->
+                <div class="row">
+                    <div class="col-md-6 form-group mb-3">
+                        <label for="salary" class="text-white-50">Salary</label>
+                        <input type="text" class="form-control" id="salary" placeholder="e.g., $50,000 - $70,000" style="background-color: #343a40; color: white; border: 1px solid #495057;">
+                    </div>
+                    <div class="col-md-6 form-group mb-3">
+                        <label for="totalPositions" class="text-white-50">Total Positions</label>
+                        <input type="number" class="form-control" id="totalPositions" placeholder="e.g., 5" style="background-color: #343a40; color: white; border: 1px solid #495057;">
+                    </div>
+                </div>
+
+                <!-- Skills Required -->
+                <div class="form-group mb-3">
+                    <label for="skillsRequired" class="text-white-50">Skills Required</label>
+                    <input type="text" class="form-control" id="skillsInput" placeholder="Type skills and press Enter" style="background-color: #343a40; color: white; border: 1px solid #495057;">
+                    <div id="skillsContainer" class="d-flex flex-wrap mt-2"></div>
+                </div>
+
+                <!-- Apply By Date -->
+                <div class="form-group mb-4">
+                    <label for="applyByDate" class="text-white-50">Apply By</label>
+                    <input type="date" class="form-control" id="applyByDate" style="background-color: #343a40; color: white; border: 1px solid #495057;">
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-warning btn-lg font-weight-bold" style="background-color: #ffc107; color: black; border: none; border-radius: 6px; padding: 10px 40px;">
+                        Post Job
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const jobCategory = document.getElementById('jobCategory');
+        const jobDesignation = document.getElementById('jobDesignation');
+        const skillsInput = document.getElementById('skillsInput');
+        const skillsContainer = document.getElementById('skillsContainer');
+
+        const itDesignations = [
+            'SDE', 'Frontend Web Developer', 'Android Development', 'Backend Web Developer',
+            'MERN Stack Developer', 'Full Stack Developer', 'DevOps Engineer', 'Data Scientist',
+            'AI/ML Engineer', 'Cloud Architect'
+        ];
+        const nonItDesignations = [
+            'Chat Support Associate', 'Customer Service Representative', 'Human Resources Manager',
+            'Marketing Specialist', 'Sales Executive', 'Accountant', 'Project Manager',
+            'Operations Coordinator', 'Office Administrator'
+        ];
+        const allSkills = [
+            'MongoDB', 'C++', 'Java', 'JavaScript', 'React', 'Angular', 'Node.js', 'Python',
+            'SQL', 'HTML', 'CSS', 'PHP', 'Ruby', 'Swift', 'Kotlin', 'TypeScript', 'Docker',
+            'Kubernetes', 'AWS', 'Azure', 'GCP', 'Spring Boot', 'Django', 'Flask', 'Vue.js', 'Express.js'
+        ];
+        let selectedSkills = [];
+
+        function updateDesignations() {
+            const category = jobCategory.value;
+            const designations = category === 'IT' ? itDesignations : nonItDesignations;
+            jobDesignation.innerHTML = '';
+            designations.forEach(designation => {
+                const option = document.createElement('option');
+                option.value = designation;
+                option.textContent = designation;
+                jobDesignation.appendChild(option);
+            });
+        }
+
+        function createSkillBadge(skill) {
+            const badge = document.createElement('span');
+            badge.className = 'badge bg-warning text-dark me-2 mb-2 p-2 rounded-pill d-flex align-items-center';
+            badge.style.backgroundColor = '#ffc107'; // Ensure correct color
+            badge.textContent = skill;
+            badge.style.cursor = 'pointer';
+
+            const removeIcon = document.createElement('span');
+            removeIcon.className = 'ms-1 fw-bold';
+            removeIcon.innerHTML = '&times;'; // 'x' icon
+            removeIcon.style.cursor = 'pointer';
+
+            badge.appendChild(removeIcon);
+
+            removeIcon.addEventListener('click', function() {
+                const index = selectedSkills.indexOf(skill);
+                if (index > -1) {
+                    selectedSkills.splice(index, 1);
+                }
+                skillsContainer.removeChild(badge);
+            });
+
+            return badge;
+        }
+
+        skillsInput.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                const skill = skillsInput.value.trim();
+                if (skill && !selectedSkills.includes(skill)) {
+                    selectedSkills.push(skill);
+                    const newBadge = createSkillBadge(skill);
+                    skillsContainer.appendChild(newBadge);
+                    skillsInput.value = '';
+                }
+            }
+        });
+
+        skillsInput.addEventListener('input', function() {
+            const value = skillsInput.value.trim().toLowerCase();
+            const filteredSkills = allSkills.filter(s => s.toLowerCase().startsWith(value) && !selectedSkills.includes(s));
+        });
+
+        jobCategory.addEventListener('change', updateDesignations);
+        updateDesignations();
+    });
+</script>

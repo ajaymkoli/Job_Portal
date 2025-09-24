@@ -1,0 +1,142 @@
+<div class="container py-5">
+    <div class="card bg-dark text-white p-4 shadow-lg mx-auto card-style">
+        <div class="card-body">
+            <h3 class="text-center font-weight-bold mb-4 text-white">Register</h3>
+            
+            <!-- Dynamic Error Message Display -->
+            <% if(locals.errorMessage) { %>
+                <div class="alert alert-warning" role="alert">
+                    <%= locals.errorMessage %>
+                </div>
+            <% } %>
+
+            <form action="/register" method="post">
+                <!-- Full Name -->
+                <div class="form-group mb-3">
+                    <label for="name" class="text-white-50">Full Name</label>
+                    <input type="text" class="form-control form-input-style" id="name" name="name" placeholder="Enter your full name">
+                </div>
+
+                <!-- Email Address -->
+                <div class="form-group mb-3">
+                    <label for="email" class="text-white-50">Email address</label>
+                    <input type="email" class="form-control form-input-style" id="email" name="email" placeholder="Enter your email">
+                </div>
+
+                <!-- Mobile Number -->
+                <div class="form-group mb-3">
+                    <label for="mobile" class="text-white-50">Mobile Number</label>
+                    <input type="tel" class="form-control form-input-style" id="mobile" name="mobile" placeholder="Enter your mobile number">
+                </div>
+
+                <!-- Password -->
+                <div class="form-group mb-3">
+                    <label for="password" class="text-white-50">Password</label>
+                    <input type="password" class="form-control form-input-style" id="password" name="password" placeholder="Create a strong password">
+                    <div id="passwordStrengthBar" class="progress mt-2 progress-style">
+                        <div class="progress-bar" id="passwordStrength" role="progressbar"></div>
+                    </div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group mb-4">
+                    <label for="confirmPassword" class="text-white-50">Confirm Password</label>
+                    <input type="password" class="form-control form-input-style" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password">
+                </div>
+
+                <!-- Register Button -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-warning btn-lg font-weight-bold btn-style">
+                        Register
+                    </button>
+                </div>
+
+                <!-- Login link -->
+                <div class="text-center mt-3">
+                    <p class="text-white-50">Already registered? 
+                        <a href="/login" class="text-warning text-decoration-none">Login</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card-style {
+        max-width: 600px;
+        border-radius: 12px;
+        border: none;
+    }
+    .form-input-style {
+        background-color: #343a40;
+        color: white;
+        border: 1px solid #495057;
+    }
+    .form-input-style:active,
+    .form-input-style:focus
+    {
+        background-color: #343a40;
+        color: white;
+    } 
+    .form-input-style::placeholder {
+        color: white;
+        opacity: 0.8; 
+    }
+    .progress-style {
+        height: 5px; 
+        background-color: #495057;
+    }
+    .progress-bar {
+        width: 0%;
+        transition: width .5s ease;
+    }
+    .btn-style {
+        background-color: #ffc107;
+        color: black;
+        border: none;
+        border-radius: 6px;
+        padding: 10px 40px;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const passwordInput = document.getElementById('password');
+        const passwordStrength = document.getElementById('passwordStrength');
+
+        // Function to check password strength
+        function checkPasswordStrength(password) {
+            let strength = 0;
+            if (password.length > 7) {
+                strength += 25;
+            }
+            if (password.match(/[a-z]/) && password.match(/[A-Z]/)) {
+                strength += 25;
+            }
+            if (password.match(/\d/)) {
+                strength += 25;
+            }
+            if (password.match(/[^a-zA-Z\d\s:]/)) {
+                strength += 25;
+            }
+            return strength;
+        }
+
+        passwordInput.addEventListener('input', function() {
+            const password = passwordInput.value;
+            const strength = checkPasswordStrength(password);
+            passwordStrength.style.width = strength + '%';
+
+            if (strength < 25) {
+                passwordStrength.style.backgroundColor = 'red';
+            } else if (strength < 50) {
+                passwordStrength.style.backgroundColor = 'orange';
+            } else if (strength < 75) {
+                passwordStrength.style.backgroundColor = 'yellow';
+            } else {
+                passwordStrength.style.backgroundColor = 'green';
+            }
+        });
+    });
+</script>

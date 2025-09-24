@@ -1,0 +1,174 @@
+:root {
+  --primary: #ffc107;
+  --secondary: #212529;
+  --text: white;
+  --background: #2d3236;
+}
+
+body {
+  background-color: var(--background);
+}
+
+body::-webkit-scrollbar {
+  width: 0;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+}
+
+/* Index Page */
+.indexpage {
+  background-color: var(--background);
+  color: var(--text);
+}
+
+.left {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Jobs and opportunities styling */
+.ml12 {
+  font-weight: 200;
+  font-size: 1.3em;
+}
+
+.ml12 .letter {
+  display: inline-block;
+  line-height: 1em;
+  color: var(--text);
+}
+
+/* Disappearing Animation */
+.ml12 .letter.disappear {
+  animation: fadeOut 1s forwards;
+}
+
+/* Reappearing Animation */
+.ml12 .letter.reappear {
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Floating animation of image in hero secrtion of index page */
+.hero-image img {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Job card display */
+
+.joblisting {
+  min-width: 100%;
+  background-color: var(--background);
+  margin: 0 auto;
+}
+
+.joblisting p {
+  color: var(--text);
+}
+
+.job-card {
+  background-color: var(--secondary);
+  color: white;
+  padding: 1em;
+  border-radius: 13px;
+  transition: all 0.4s ease;
+}
+
+.job-card:hover {
+  background-color: #272c31;
+  transform: translateY(-7px);
+  box-shadow: 0px 8px 16px rgba(246, 242, 242, 0.8);
+}
+
+.hiring-status {
+  border: 1.5px solid white;
+  background-color: #fff3cd;
+  color: var(--secondary);
+  border-radius: 5px;
+  width: fit-content;
+}
+
+.company {
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.role {
+  color: white;
+  font-weight: 400;
+}
+
+.skills span {
+  background-color: #ffe187;
+  color: var(--secondary);
+  border-radius: 15px;
+  padding: 5px 10px;
+  margin-right: 5px;
+  font-size: 0.9em;
+}
+
+.details {
+  background-color: var(--primary);
+  color: text;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+/* Login Form styling */
+
+.login-form {
+  max-width: 600px;
+  color: var(--text);
+}
+
+/* Job posting form */
+.form-control::placeholder {
+  color: white;
+  opacity: 0.8;
+}
