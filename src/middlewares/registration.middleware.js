@@ -35,4 +35,5 @@ const validateRegistration = async (req, res, next) => {
     }
     next();
 };
+
 export default validateRegistration;
