@@ -9,8 +9,14 @@ export default class UserModel{
 
     static add(name,email,mobile,password){
         const newUser = new UserModel(users.length + 1, name, email, mobile, password);
-        users.push(newUser);
-        console.log(users);
+        const exist = users.find((u) => u.email == email || u.mobile == mobile);
+        if(!exist){
+            users.push(newUser);
+            console.log(users);
+            return true;
+        } else{
+            return false;
+        }
     }
 
     static isValidUser(email,password){
@@ -18,8 +24,8 @@ export default class UserModel{
         return result;
     }
 
-    static getById(id){
-        return users.find((u) => u.id == id);
+    static getUser(email,password){
+        return users.find((u) => u.email == email && u.password == password);
     }
 }
 

@@ -38,6 +38,32 @@ body::-webkit-scrollbar {
   align-items: flex-start;
 }
 
+/* Post Login */
+.welcome{
+  position: absolute;
+  top: 5vh;
+  min-width: 300px;
+  max-width: fit-content;
+  left: 42%;
+  transform: translateX(-50%);
+  z-index: 10;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  animation: fadeOut 3.5s forwards;
+}
+
+@keyframes fadeOut{
+  0%{
+    opacity: 1;
+  }
+
+  100%{
+    opacity: 0;
+  }
+}
+
 /* Jobs and opportunities styling */
 .ml12 {
   font-weight: 200;

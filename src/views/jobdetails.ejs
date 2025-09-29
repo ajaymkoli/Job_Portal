@@ -50,10 +50,16 @@
                             <p class="fw-bold text-white fs-5">September 30, 2025</p>
                         </div>
                         <div class="col-md-6 mb-3">
+                            <!-- Clickable only if user is loggedIn (Recruiters) -->
+                            <% if(locals.userEmail){ %>
                             <a href="/applicants" class="text-decoration-none">
                                 <p class="text-white-50 mb-1"><i class="fa-solid fa-clipboard-user me-2"></i>Applications received:</p>
                                 <p class="fw-bold text-white fs-5">5</p>
                             </a>
+                            <% } else { %>
+                                <p class="text-white-50 mb-1"><i class="fa-solid fa-clipboard-user me-2"></i>Applications received:</p>
+                                <p class="fw-bold text-white fs-5">5</p>
+                            <% } %>
                         </div>
                     </div>
 

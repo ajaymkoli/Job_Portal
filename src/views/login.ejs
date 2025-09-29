@@ -1,5 +1,19 @@
 <div class="login-form container my-5 p-4 bg-light rounded shadow bg-body-dark bg-dark" data-bs-theme="dark">
   <h2 class="text-center">Login</h2>
+
+  <!-- Dynamic Error Message Display -->
+  <% if(locals.successMessage) { %>
+    <div class="alert alert-success" role="alert">
+      <%= locals.successMessage %>
+    </div>
+  <% } %>
+
+  <% if(locals.errorMessage) { %>
+    <div class="alert alert-warning" role="alert">
+      <%= locals.errorMessage %>
+    </div>
+  <% } %>
+
   <form action="/login" method="post">
     <div class="mb-3">
       <label for="email" class="form-label">Email address</label>
@@ -13,8 +27,8 @@
       <input type="password" class="form-control" id="password" name="password" />
     </div>
     <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-      <label class="form-check-label" for="exampleCheck1">Accept the terms and conditions to proceed</label>
+      <input type="checkbox" class="form-check-input" id="check" />
+      <label class="form-check-label" for="check">Accept the terms and conditions to proceed</label>
     </div>
     <div class="text-center">
       <button type="submit" class="btn btn-warning px-4 py-2">Login</button>

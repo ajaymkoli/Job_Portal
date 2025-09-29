@@ -9,6 +9,14 @@
     <script src="https://kit.fontawesome.com/d16333e4a8.js" crossorigin="anonymous"></script>
   </head>
   <body>
+    
+    <!-- Post Login Message -->
+    <% if(locals.loginMessage) { %>
+      <div class="alert alert-warning welcome" role="alert">
+        <%= locals.loginMessage %>
+      </div>
+    <% } %>
+    
     <nav class="navbar navbar-expand-lg bg-dark text-white" data-bs-theme="dark">
       <div class="container-fluid gap-4">
         <div class="d-flex align-items-center me-3 gap-2">
@@ -32,17 +40,16 @@
                 <li><a class="dropdown-item text-white" href="/jobs">Posted Jobs</a></li>
                 <li><a class="dropdown-item text-white" href="/postjob">Post New Job</a></li>
                 <li><hr class="dropdown-divider" /></li>
-                <li>
-                  <a class="dropdown-item text-white" href="/login">
-                    Login &nbsp;&nbsp;&nbsp;
-                    <!-- <i class="fa-solid fa-right-from-bracket"></i> -->
-                  </a>
-                </li>
+                <% if(!locals.userEmail){ %>
+                  <li><a class="dropdown-item text-white" href="/login">Login&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-user-tie"></i></a></li>
+                <% } else{ %>
+                  <li><a class="dropdown-item text-white" href="/logout">Logout&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>
+                <% } %>
               </ul>
             </li>
           </ul>
           <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+            <input class="form-control me-2" id="search" name="search" type="search" placeholder="Search" aria-label="Search"/>
             <button class="btn btn-outline-warning" type="submit"> Search </button>
           </form>
         </div>
@@ -55,44 +62,20 @@
       <div class="container text-center text-md-left">
         <div class="row text-center text-md-left">
           <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-            <h5 class="text-uppercase mb-4 font-weight-bold text-warning">
-              About easily
-            </h5>
-            <p>
-              Your one-stop solution to find your dream job with ease. We offer a wide rande of job listings, and career resourses.
-            </p>
+            <h5 class="text-uppercase mb-4 font-weight-bold text-warning">About easily</h5>
+            <p>Your one-stop solution to find your dream job with ease. We offer a wide rande of job listings, and career resourses.</p>
           </div>
 
           <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-            <h5 class="text-uppercase mb-4 font-weight-bold text-warning">
-              Quick Links
-            </h5>
-            <p>
-              <a href="/jobs" class="text-white" style="text-decoration: none"
-                >Find Jobs</a
-              >
-            </p>
-            <p>
-              <a href="/postjob" class="text-white" style="text-decoration: none"
-                >Post a Job</a
-              >
-            </p>
-            <p>
-              <a href="/about" class="text-white" style="text-decoration: none"
-                >About Us</a
-              >
-            </p>
-            <p>
-              <a href="#" class="text-white" style="text-decoration: none"
-                >Contact Us</a
-              >
-            </p>
+            <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Quick Links</h5>
+            <p><a href="/jobs" class="text-white" style="text-decoration: none">Find Jobs</a></p>
+            <p><a href="/postjob" class="text-white" style="text-decoration: none">Post a Job</a></p>
+            <p><a href="/about" class="text-white" style="text-decoration: none">About Us</a></p>
+            <p><a href="#" class="text-white" style="text-decoration: none">Contact Us</a></p>
           </div>
 
           <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-            <h5 class="text-uppercase mb-4 font-weight-bold text-warning">
-              Contact
-            </h5>
+            <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Contact</h5>
             <p><i class="fas fa-home mr-3"></i> Pune, Maharashtra</p>
             <p><i class="fas fa-envelope mr-3"></i> findjobs@easily.com</p>
             <p><i class="fas fa-phone mr-3"></i> + 91 8767674098</p>
@@ -104,7 +87,7 @@
         <div class="row align-items-center">
           <div class="col-md-7 col-lg-8">
             <p>
-              Copyright ©2025 All rights reserved by:
+              &copy; 2025 All rights reserved by:
               <a href="https://www.linkedin.com/in/ajaykoli/" style="text-decoration: none" target="_blank">
                 <strong class="text-warning">Ajay Koli</strong>
               </a>

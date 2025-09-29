@@ -1,5 +1,4 @@
-
-class Jobs {
+export default class JobModel {
     constructor(id, jobcategory, jobdesignation, joblocation, companyname, salary, applyby, skillsrequired, numberofopenings, jobposted, applicants){
         this.id = id;
         this.jobcategory = jobcategory;
@@ -14,7 +13,8 @@ class Jobs {
         this.applicants = [];
     }
 
-    getJobDetails(){
+    add(jobcategory, jobdesignation, joblocation, companyname, salary, applyby, skillsrequired, numberofopenings, jobposted, applicants){
+
     }
 }
 
