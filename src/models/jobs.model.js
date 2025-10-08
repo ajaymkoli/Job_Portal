@@ -1,3 +1,4 @@
+import {applicants} from "./applicants.model.js";
 export default class JobModel {
     constructor(id, jobcategory, jobdesignation, joblocation, companyname, salary, applyby, skillsrequired, numberofopenings, jobposted, applicants){
         this.id = id;
@@ -7,14 +8,26 @@ export default class JobModel {
         this.companyname = companyname;
         this.salary = salary;
         this.applyby = applyby;
-        this.skillsrequired = [];
+        this.skillsrequired = skillsrequired;
         this.numberofopenings = numberofopenings;
         this.jobposted = jobposted;
-        this.applicants = [];
+        this.applicants = applicants;
     }
 
-    add(jobcategory, jobdesignation, joblocation, companyname, salary, applyby, skillsrequired, numberofopenings, jobposted, applicants){
+    static add(jobcategory, jobdesignation, joblocation, companyname, salary, applyby, skillsrequired, numberofopenings){
+        const jobPosted = new Date().toLocaleString();
+        const job = new JobModel(jobs.length + 1, jobcategory, jobdesignation, joblocation, companyname, salary, applyby, skillsrequired, numberofopenings, jobPosted, applicants.length);
+        console.log(job);
+        if(job){
+            jobs.push(job);
+            return true;
+        } else{
+            return false;
+        }
+    }
 
+    static getAllJobs(){
+        return jobs;
     }
 }
 

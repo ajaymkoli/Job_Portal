@@ -2,18 +2,23 @@
     <div class="card bg-dark text-white p-4 shadow-lg mx-auto" style="max-width: 600px; border-radius: 12px; border: none;">
         <div class="card-body">
             <h3 class="text-center font-weight-bold mb-4" style="color: white;">Post a New Job</h3>
-            <form action="/postjob" method="post">
+            <% if(locals.errorMessage) { %>
+                <div class="alert alert-warning" role="alert">
+                    <%= locals.errorMessage %>
+                </div>
+            <% } %>
+            <form action="/postjob" method="post" id="postJobForm"> 
                 <!-- Job Category and Designation -->
                 <div class="form-group mb-3">
                     <label for="jobCategory" class="text-white-50">Job Category</label>
-                    <select class="form-control" id="jobCategory" style="background-color: #343a40; color: white; border: 1px solid #495057;">
+                    <select name="jobcategory" class="form-control" id="jobCategory" style="background-color: #343a40; color: white; border: 1px solid #495057;">
                         <option value="IT">IT</option>
                         <option value="Non-IT">Non-IT</option>
                     </select>
                 </div>
                 <div class="form-group mb-3">
                     <label for="jobDesignation" class="text-white-50">Job Designation</label>
-                    <select class="form-control" id="jobDesignation" style="background-color: #343a40; color: white; border: 1px solid #495057;">
+                    <select name="jobdesignation" class="form-control" id="jobDesignation" style="background-color: #343a40; color: white; border: 1px solid #495057;">
                         <option value="SDE">SDE</option>
                         <option value="Frontend Web Developer">Frontend Web Developer</option>
                         <option value="Android Development">Android Development</option>
@@ -27,11 +32,11 @@
                 <div class="row">
                     <div class="col-md-6 form-group mb-3">
                         <label for="companyName" class="text-white-50">Company Name</label>
-                        <input type="text" class="form-control" id="companyName" placeholder="Enter Company Name" style="background-color: #343a40; color: white; border: 1px solid #495057;">
+                        <input type="text" name="companyname" class="form-control" id="companyName" placeholder="Enter Company Name" style="background-color: #343a40; color: white; border: 1px solid #495057;">
                     </div>
                     <div class="col-md-6 form-group mb-3">
                         <label for="jobLocation" class="text-white-50">Job Location</label>
-                        <input type="text" class="form-control" id="jobLocation" placeholder="Enter Job Location" style="background-color: #343a40; color: white; border: 1px solid #495057;">
+                        <input type="text" name="joblocation" class="form-control" id="jobLocation" placeholder="Enter Job Location" style="background-color: #343a40; color: white; border: 1px solid #495057;">
                     </div>
                 </div>
 
@@ -39,25 +44,28 @@
                 <div class="row">
                     <div class="col-md-6 form-group mb-3">
                         <label for="salary" class="text-white-50">Salary</label>
-                        <input type="text" class="form-control" id="salary" placeholder="e.g., $50,000 - $70,000" style="background-color: #343a40; color: white; border: 1px solid #495057;">
+                        <input type="text" name="salary" class="form-control" id="salary" placeholder="e.g., $50,000 - $70,000" style="background-color: #343a40; color: white; border: 1px solid #495057;">
                     </div>
                     <div class="col-md-6 form-group mb-3">
                         <label for="totalPositions" class="text-white-50">Total Positions</label>
-                        <input type="number" class="form-control" id="totalPositions" placeholder="e.g., 5" style="background-color: #343a40; color: white; border: 1px solid #495057;">
+                        <input type="number" name="numberofopenings" class="form-control" id="totalPositions" placeholder="e.g., 5" style="background-color: #343a40; color: white; border: 1px solid #495057;">
                     </div>
                 </div>
+
+                <!-- Hidden Input Field to store serialized skills -->
+                <input type="hidden" name="skillsrequired" id="hiddenSkillsInput" value="">
 
                 <!-- Skills Required -->
                 <div class="form-group mb-3">
                     <label for="skillsRequired" class="text-white-50">Skills Required</label>
-                    <input type="text" class="form-control" id="skillsInput" placeholder="Type skills and press Enter" style="background-color: #343a40; color: white; border: 1px solid #495057;">
+                    <input type="text" name="skills_temp" class="form-control" id="skillsInput" placeholder="Type skills and press Enter" style="background-color: #343a40; color: white; border: 1px solid #495057;">
                     <div id="skillsContainer" class="d-flex flex-wrap mt-2"></div>
                 </div>
 
                 <!-- Apply By Date -->
                 <div class="form-group mb-4">
                     <label for="applyByDate" class="text-white-50">Apply By</label>
-                    <input type="date" class="form-control" id="applyByDate" style="background-color: #343a40; color: white; border: 1px solid #495057;">
+                    <input type="date" name="applyby" class="form-control" id="applyByDate" style="background-color: #343a40; color: white; border: 1px solid #495057;">
                 </div>
 
                 <div class="text-center">
@@ -76,6 +84,8 @@
         const jobDesignation = document.getElementById('jobDesignation');
         const skillsInput = document.getElementById('skillsInput');
         const skillsContainer = document.getElementById('skillsContainer');
+        const form = document.getElementById('postJobForm'); // Get the form
+        const hiddenSkillsInput = document.getElementById('hiddenSkillsInput');
 
         const itDesignations = [
             'SDE', 'Frontend Web Developer', 'Android Development', 'Backend Web Developer',
@@ -93,6 +103,11 @@
             'Kubernetes', 'AWS', 'Azure', 'GCP', 'Spring Boot', 'Django', 'Flask', 'Vue.js', 'Express.js'
         ];
         let selectedSkills = [];
+
+        function syncHiddenInput() {
+            // Convert the JavaScript array into a JSON string
+            hiddenSkillsInput.value = JSON.stringify(selectedSkills);
+        }
 
         function updateDesignations() {
             const category = jobCategory.value;
@@ -126,6 +141,8 @@
                     selectedSkills.splice(index, 1);
                 }
                 skillsContainer.removeChild(badge);
+
+                syncHiddenInput(); // Sync hidden input whenever a skill is removed
             });
 
             return badge;
@@ -140,6 +157,8 @@
                     const newBadge = createSkillBadge(skill);
                     skillsContainer.appendChild(newBadge);
                     skillsInput.value = '';
+
+                    syncHiddenInput(); // Sync hidden input whenever a skill is added
                 }
             }
         });
@@ -151,5 +170,11 @@
 
         jobCategory.addEventListener('change', updateDesignations);
         updateDesignations();
+
+        form.addEventListener('submit', function(event){
+            syncHiddenInput();
+        })
+
+        syncHiddenInput(); // Initial sync rto ensure empty array is sent if no skills are selected.
     });
 </script>

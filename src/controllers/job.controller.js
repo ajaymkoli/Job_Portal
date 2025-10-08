@@ -1,24 +1,48 @@
 import JobModel from "../models/jobs.model.js";
 
-export default class jobController{
-    static getJobs(req, res){ 
-        res.render('jobListings');
+export default class JobController {
+
+    getAllJobs(req, res) {
+        return res.render('jobListings', { jobs: JobModel.getAllJobs() });
     }
 
-    static getPostJob(req, res){ 
-        res.render('jobListings');
+    getPostJob(req, res) {
+        return res.render('postjob');
     }
 
-    static postJob(req,res){
-        const {jobcategory, jobdesignation, joblocation, companyname, salary, applyby, skillsrequired, numberofopenings, jobposted, applicants} = req.body;
-        if(!JobModel.add(jobcategory, jobdesignation, joblocation, companyname, salary, applyby, skillsrequired, numberofopenings, jobposted, applicants)){
-            
-        } else{
+    getJobDetails(req, res) {
+        return res.render('jobdetails');
+    }
 
+    postJob(req, res) {
+        const { jobcategory, jobdesignation, joblocation, companyname, salary, applyby, skillsrequired, numberofopenings } = req.body;
+        // Parse JSON string of skillsrequired back to Javascript array
+        // Always convert skillsrequired to an array
+        let skillsArray;
+        if (Array.isArray(skillsrequired)) {
+            skillsArray = skillsrequired;
+        } else if (typeof skillsrequired === 'string') {
+            if (skillsrequired.trim().startsWith('[')) {
+                try {
+                    skillsArray = JSON.parse(skillsrequired);
+                } catch (e) {
+                    skillsArray = [];
+                }
+            } else {
+                skillsArray = skillsrequired.split(',').map(s => s.trim()).filter(s => s.length > 0);
+            }
+        } else {
+            skillsArray = [];
+        }
+
+        let postJob = JobModel.add(jobcategory, jobdesignation, joblocation, companyname, salary, applyby, skillsArray, numberofopenings);
+
+        if (postJob) {
+            return res.render("jobListings", { successMessage: "Job posted successfully.", jobs: JobModel.getAllJobs() });
+        } else {
+            return res.render("postjob", { errorMessage: "Job posting failed. Please try again." });
         }
     }
-
-    static getJobs(req, res){ 
-        res.render('jobListings');
-    }
 }
+
+const jobs = [];

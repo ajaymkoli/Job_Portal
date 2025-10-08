@@ -1,5 +1,4 @@
-
-class Applicant {
+export default class ApplicantsModel {
     constructor(applicantid, name, email, contact, resumepath){
         this.applicantid = applicantid;
         this.name = name;
@@ -9,4 +8,4 @@ class Applicant {
     }
 }
 
-const applicants = [];
+export const applicants = [];

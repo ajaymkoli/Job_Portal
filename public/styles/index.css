@@ -39,7 +39,7 @@ body::-webkit-scrollbar {
 }
 
 /* Post Login */
-.welcome{
+.welcome, .jobpostedalert, .jobposterror{
   position: absolute;
   top: 5vh;
   min-width: 300px;
@@ -54,12 +54,12 @@ body::-webkit-scrollbar {
   animation: fadeOut 3.5s forwards;
 }
 
-@keyframes fadeOut{
-  0%{
+@keyframes fadeOut {
+  0% {
     opacity: 1;
   }
 
-  100%{
+  100% {
     opacity: 0;
   }
 }

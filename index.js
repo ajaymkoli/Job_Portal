@@ -3,8 +3,10 @@ import express from 'express';
 import path from 'path';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
-import userController from './src/controllers/user.controller.js';
-import jobController from './src/controllers/job.controller.js';
+// controllers
+import UserController from './src/controllers/user.controller.js';
+import JobController from './src/controllers/job.controller.js';
+// middlewares
 import validateRegistration from './src/middlewares/registration.middleware.js';
 import { auth } from './src/middlewares/auth.js';
 
@@ -35,8 +37,8 @@ app.use((req, res, next) => {
   next()
 });
 
-const usersController = new userController();
-const jobsController = new jobController();
+const usersController = new UserController();
+const jobsController = new JobController();
 
 app.get('/', (req, res) => { res.render('index'); });
 app.get('/about', (req, res) => { res.render('about') });
@@ -49,10 +51,10 @@ app.post('/login', usersController.postLogin);
 app.get('/logout', usersController.logout);
 
 // Jobs related routes
-app.get('/jobs', jobsController.getJobs);
-app.get('/postjob', auth, (req, res) => { res.render('postjob') });
-app.post('postjob', auth, jobsController.postJob);
-app.get('/jobdetails', (req, res) => { res.render('jobdetails') });
+app.get('/jobs', jobsController.getAllJobs);
+app.get('/postjob', auth, jobsController.getPostJob);
+app.post('/postjob', auth, jobsController.postJob);
+app.get('/jobdetails', jobsController.getJobDetails);
 
 // Applicants related routes
 app.get('/applicants', (req, res) => { res.render('applicants') });

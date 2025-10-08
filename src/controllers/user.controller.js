@@ -1,6 +1,6 @@
 import UserModel from "../models/users.model.js"
 
-export default class userController{
+export default class UserController{
     getRegister(req,res){
         res.render("register", {errorMessage:null})
     }
@@ -17,7 +17,7 @@ export default class userController{
 
     getLogin(req,res){
         res.render("login", {errorMessage:null});
-    }
+    } 
 
     postLogin(req,res){
         const {email, password} = req.body;
