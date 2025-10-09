@@ -11,11 +11,16 @@ export default class JobController {
     }
 
     getJobDetails(req, res) {
-        return res.render('jobdetails');
+        const id = req.params.id;
+        if(!JobModel.getJobById(id)){
+            return res.status(401).send('Job not found');
+        } else{
+            return res.render('jobdetails', {job: JobModel.getJobById(id)});
+        }
     }
 
     postJob(req, res) {
-        const { jobcategory, jobdesignation, joblocation, companyname, salary, applyby, skillsrequired, numberofopenings } = req.body;
+        const { jobcategory, jobdesignation, joblocation, companyname, salary, applyby, skillsrequired, numberofopenings, jobdescription } = req.body;
         // Parse JSON string of skillsrequired back to Javascript array
         // Always convert skillsrequired to an array
         let skillsArray;
@@ -35,7 +40,7 @@ export default class JobController {
             skillsArray = [];
         }
 
-        let postJob = JobModel.add(jobcategory, jobdesignation, joblocation, companyname, salary, applyby, skillsArray, numberofopenings);
+        let postJob = JobModel.add(jobcategory, jobdesignation, joblocation, companyname, salary, applyby, skillsArray, numberofopenings, jobdescription);
 
         if (postJob) {
             return res.render("jobListings", { successMessage: "Job posted successfully.", jobs: JobModel.getAllJobs() });

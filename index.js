@@ -20,7 +20,7 @@ app.set('views', path.join(path.resolve('src', 'views')));
 // Use session and cookies
 app.use(cookieParser());
 app.use(session({
-  secret: 'SecreteKey',
+  secret: 'SecretKey',
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false }
@@ -48,13 +48,13 @@ app.get('/register', usersController.getRegister);
 app.post('/register', validateRegistration, usersController.postRegister);
 app.get('/login', usersController.getLogin);
 app.post('/login', usersController.postLogin);
-app.get('/logout', usersController.logout);
+app.get('/logout', auth, usersController.logout);
 
 // Jobs related routes
 app.get('/jobs', jobsController.getAllJobs);
 app.get('/postjob', auth, jobsController.getPostJob);
 app.post('/postjob', auth, jobsController.postJob);
-app.get('/jobdetails', jobsController.getJobDetails);
+app.get('/jobdetails/:id', jobsController.getJobDetails);
 
 // Applicants related routes
 app.get('/applicants', (req, res) => { res.render('applicants') });
