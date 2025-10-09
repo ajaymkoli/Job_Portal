@@ -29,4 +29,12 @@ export default class UserModel{
     }
 }
 
-const users = [];
+const users = [
+    {
+        id: 1,
+        name: "Ajay Koli",
+        email: "ajaymkoli.544@gmail.com",
+        mobile: "8767674098",
+        password: "2318@Ajay",
+    },
+];

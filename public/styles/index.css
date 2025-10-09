@@ -24,6 +24,81 @@ body::-webkit-scrollbar {
   padding: 0;
 }
 
+/* Post Job Card Styles */
+.postjob-card {
+  max-width: 600px;
+  border-radius: 12px;
+  border: none;
+}
+.postjob-title {
+  color: white;
+}
+.postjob-select,
+.postjob-input {
+  background-color: #343a40;
+  color: white;
+  border: 1px solid #495057;
+}
+.postjob-input:focus,
+.postjob-select:focus {
+  background-color: #343a40;
+  color: white;
+  box-shadow: none;
+}
+.postjob-input {
+  width: 100%;
+}
+.postjob-btn {
+  background-color: #ffc107;
+  color: black;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 40px;
+}
+
+/* Register Card Styles */
+.register-card {
+  max-width: 600px;
+  border-radius: 12px;
+  border: none;
+  margin: 0 auto;
+}
+.register-title {
+  color: white;
+}
+.register-input {
+  background-color: #343a40;
+  color: white;
+  border: 1px solid #495057;
+}
+/* Restore input focus color for registration form */
+.register-input:focus {
+  background-color: #343a40;
+  color: white;
+  box-shadow: none;
+}
+.register-input::placeholder {
+  color: white;
+  opacity: 0.8;
+}
+.register-btn {
+  background-color: #ffc107;
+  color: black;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 40px;
+}
+
+/* Remove underline from links */
+.no-underline {
+  text-decoration: none;
+}
+
+/* Font size for social icons */
+.font-23 {
+  font-size: 23px;
+}
+
 /* Index Page */
 .indexpage {
   background-color: var(--background);
@@ -39,7 +114,9 @@ body::-webkit-scrollbar {
 }
 
 /* Post Login */
-.welcome, .jobpostedalert, .jobposterror{
+.welcome,
+.jobpostedalert,
+.jobposterror {
   position: absolute;
   top: 5vh;
   min-width: 300px;
@@ -138,7 +215,7 @@ body::-webkit-scrollbar {
 }
 
 .job-card {
-  background-color: var(--secondary);
+  background-color: #1e2125 !important;
   color: white;
   padding: 1em;
   border-radius: 13px;
@@ -146,7 +223,7 @@ body::-webkit-scrollbar {
 }
 
 .job-card:hover {
-  background-color: #272c31;
+  background-color: #282b30 !important;
   transform: translateY(-7px);
   box-shadow: 0px 8px 16px rgba(246, 242, 242, 0.8);
 }
@@ -197,3 +274,53 @@ body::-webkit-scrollbar {
   color: white;
   opacity: 0.8;
 }
+
+/* ===================== Job Details Card & Modal Styles ===================== */
+
+/* Card styling for job details page */
+.jobdetails-modal,
+.job-card {
+  background-color: #2b3035;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal header border */
+.jobdetails-modal-header {
+  border-bottom: 1px solid #495057;
+}
+
+/* Modal form label color */
+.jobdetails-modal .form-label {
+  color: #f8f9fa;
+}
+
+/* Modal input styling */
+.jobdetails-modal-input {
+  background-color: #495057;
+  color: white;
+  border: none;
+}
+
+.jobdetails-modal-input::placeholder {
+  color: #ced4da;
+  opacity: 0.6;
+}
+
+.jobdetails-modal-input:focus {
+  background-color: #495057;
+  color: white;
+  box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+}
+
+/* Apply button styling (matches job card details button) */
+.apply-btn {
+  background-color: #ffc107 !important;
+  color: black !important;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 60px;
+}
+
+/* ===================== End Job Details Card & Modal Styles ===================== */

@@ -9,8 +9,9 @@
   <div class="alert alert-success jobpostedalert" role="alert"><%= successMessage %></div>
   
   <!-- If there are any error messages -->
-  <% } %> <% if (locals.errorMessage) { %>
-  <div class="alert alert-warning jobposterror" role="alert"><%= errorMessage %></div>
+  <% } %> 
+  <% if (locals.errorMessage) { %>
+    <div class="alert alert-warning jobposterror" role="alert"><%= errorMessage %></div>
   <% } %>
 
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
