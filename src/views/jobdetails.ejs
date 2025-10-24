@@ -60,28 +60,50 @@
               <p class="fw-bold text-white fs-5"><%= job.applyby %></p>
             </div>
             <div class="col-md-6 mb-3">
-              <!-- Clickable only if user is loggedIn (Recruiters) -->
-              <% if(locals.userEmail){ %>
-              <a href="/applicants" class="text-decoration-none">
-                <p class="text-white-50 mb-1">
-                  <i class="fa-solid fa-clipboard-user me-2"></i>Applications
-                  received:
-                </p>
-                <p class="fw-bold text-white fs-5"><%= job.applicants %></p>
-              </a>
-              <% } else { %>
               <p class="text-white-50 mb-1">
                 <i class="fa-solid fa-clipboard-user me-2"></i>Applications
                 received:
               </p>
               <p class="fw-bold text-white fs-5"><%= job.applicants %></p>
-              <% } %>
             </div>
           </div>
 
           <div class="mb-4 text-white-50 fst-italic"><%= job.jobposted%></div>
 
-          <div class="text-center mt-5">
+          <!-- Bottom controls: edit/delete (left) and view applicants / apply (centered at very bottom) -->
+          <div class="d-flex justify-content-between align-items-center mt-4">
+            <div>
+              <% if (locals.userEmail && job.posterEmail && job.posterEmail ===
+              locals.userEmail) { %>
+              <a
+                href="/postjob/<%= job.id %>"
+                class="btn btn-sm btn-warning me-2"
+                >Edit</a
+              >
+              <!-- Trigger delete modal -->
+              <button
+                type="button"
+                class="btn btn-sm btn-danger"
+                data-bs-toggle="modal"
+                data-bs-target="#deleteJobModal"
+              >
+                Delete
+              </button>
+              <% } %>
+            </div>
+            <div></div>
+          </div>
+
+          <div class="text-center mt-3">
+            <% if (locals.userEmail && job.posterEmail && job.posterEmail ===
+            locals.userEmail) { %>
+            <a
+              href="/applicants/<%= job.id %>"
+              class="btn details btn-lg fw-bold apply-btn"
+            >
+              View Applicants
+            </a>
+            <% } else { %>
             <button
               type="button"
               class="btn details btn-lg fw-bold apply-btn"
@@ -90,9 +112,53 @@
             >
               Apply Now
             </button>
+            <% } %>
           </div>
           <%}%>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Job Confirmation Modal -->
+<div
+  class="modal fade"
+  id="deleteJobModal"
+  tabindex="-1"
+  aria-labelledby="deleteJobModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content jobdetails-modal">
+      <div class="modal-header jobdetails-modal-header">
+        <h5 class="modal-title fw-bold text-white" id="deleteJobModalLabel">
+          Confirm delete
+        </h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body text-white">
+        <p>
+          Are you sure you want to permanently delete this job posting? This
+          action cannot be undone and all associated applicants will be removed.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-light"
+          data-bs-dismiss="modal"
+        >
+          Cancel
+        </button>
+        <form method="post" action="/deletejob/<%= job.id %>" class="m-0 p-0">
+          <button type="submit" class="btn btn-danger">Yes, delete job</button>
+        </form>
       </div>
     </div>
   </div>
@@ -120,13 +186,19 @@
         ></button>
       </div>
       <div class="modal-body text-white">
-        <form id="applicationForm">
+        <form
+          id="applicationForm"
+          method="post"
+          action="/apply/<%= job.id %>"
+          enctype="multipart/form-data"
+        >
           <div class="mb-3">
             <label for="fullName" class="form-label">Full Name</label>
             <input
               type="text"
               class="form-control jobdetails-modal-input"
               id="fullName"
+              name="fullName"
               placeholder="Enter your full name"
             />
           </div>
@@ -136,6 +208,7 @@
               type="email"
               class="form-control jobdetails-modal-input"
               id="email"
+              name="email"
               placeholder="name@example.com"
             />
           </div>
@@ -145,6 +218,7 @@
               type="tel"
               class="form-control jobdetails-modal-input"
               id="mobileNumber"
+              name="mobile"
               placeholder="e.g., +91 9876543210"
             />
           </div>
@@ -154,6 +228,7 @@
               class="form-control jobdetails-modal-input"
               type="file"
               id="resume"
+              name="resume"
               accept=".pdf"
             />
           </div>

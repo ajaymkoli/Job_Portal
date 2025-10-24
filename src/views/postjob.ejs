@@ -9,7 +9,11 @@
         <%= locals.errorMessage %>
       </div>
       <% } %>
-      <form action="/postjob" method="post" id="postJobForm">
+      <form
+        action="<%= job && job.id ? ('/postjob/' + job.id) : '/postjob' %>"
+        method="post"
+        id="postJobForm"
+      >
         <!-- Job Category and Designation -->
         <div class="form-group mb-3">
           <label for="jobCategory" class="text-white-50">Job Category</label>
@@ -52,6 +56,7 @@
               class="form-control postjob-input"
               id="companyName"
               placeholder="Enter Company Name"
+              value="<%= job ? job.companyname : '' %>"
             />
           </div>
           <div class="col-md-6 form-group mb-3">
@@ -62,6 +67,7 @@
               class="form-control postjob-input"
               id="jobLocation"
               placeholder="Enter Job Location"
+              value="<%= job ? job.joblocation : '' %>"
             />
           </div>
         </div>
@@ -76,6 +82,7 @@
               class="form-control postjob-input"
               id="salary"
               placeholder="e.g., $50,000 - $70,000"
+              value="<%= job ? job.salary : '' %>"
             />
           </div>
           <div class="col-md-6 form-group mb-3">
@@ -88,6 +95,7 @@
               class="form-control postjob-input"
               id="totalPositions"
               placeholder="e.g., 5"
+              value="<%= job ? job.numberofopenings : '' %>"
             />
           </div>
         </div>
@@ -99,7 +107,9 @@
             name="jobdescription"
             placeholder="Type the job description here"
             id="jobdescription"
-          ></textarea>
+          >
+<%= job ? job.jobdescription : '' %></textarea
+          >
         </div>
 
         <!-- Hidden Input Field to store serialized skills -->
@@ -107,7 +117,7 @@
           type="hidden"
           name="skillsrequired"
           id="hiddenSkillsInput"
-          value=""
+          value="<%= job && job.skillsrequired ? JSON.stringify(job.skillsrequired) : '[]' %>"
         />
 
         <!-- Skills Required -->
@@ -157,6 +167,8 @@
     const skillsContainer = document.getElementById("skillsContainer");
     const form = document.getElementById("postJobForm"); // Get the form
     const hiddenSkillsInput = document.getElementById("hiddenSkillsInput");
+    const initialJobDesignation =
+      "<%= job ? (job.jobdesignation || '') : '' %>";
 
     const itDesignations = [
       "SDE",
@@ -210,6 +222,15 @@
       "Express.js",
     ];
     let selectedSkills = [];
+    // If editing, initialize from server-side value
+    try {
+      if (hiddenSkillsInput.value) {
+        const parsed = JSON.parse(hiddenSkillsInput.value);
+        if (Array.isArray(parsed)) selectedSkills = parsed.slice();
+      }
+    } catch (e) {
+      selectedSkills = [];
+    }
 
     function syncHiddenInput() {
       // Convert the JavaScript array into a JSON string
@@ -227,6 +248,13 @@
         option.textContent = designation;
         jobDesignation.appendChild(option);
       });
+      // If editing, pre-select designation provided by server
+      if (
+        typeof initialJobDesignation !== "undefined" &&
+        initialJobDesignation
+      ) {
+        jobDesignation.value = initialJobDesignation;
+      }
     }
 
     function createSkillBadge(skill) {
@@ -286,6 +314,11 @@
       syncHiddenInput();
     });
 
-    syncHiddenInput(); // Initial sync rto ensure empty array is sent if no skills are selected.
+    // Render initial skill badges for edit mode
+    selectedSkills.forEach((s) => {
+      const b = createSkillBadge(s);
+      skillsContainer.appendChild(b);
+    });
+    syncHiddenInput(); // Initial sync to ensure array is sent
   });
 </script>

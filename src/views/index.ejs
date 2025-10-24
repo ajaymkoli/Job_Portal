@@ -1,94 +1,104 @@
 <div class="indexpage container-Ipage p-5">
-    <div class="container main d-flex">
-        <div class="left p-2 d-flex flex-column justify-content-center gap-4">
-            <h1 class="main-heading">A comprenhensive platform for reliable</h1>
-            <h2 class="text-black ml12">
-                <span class="letter">j</span>
-                <span class="letter">o</span>
-                <span class="letter">b</span>
-                <span class="letter"> </span>
-                <span class="letter">o</span>
-                <span class="letter">p</span>
-                <span class="letter">p</span>
-                <span class="letter">o</span>
-                <span class="letter">r</span>
-                <span class="letter">t</span>
-                <span class="letter">u</span>
-                <span class="letter">n</span>
-                <span class="letter">i</span>
-                <span class="letter">t</span>
-                <span class="letter">i</span>
-                <span class="letter">e</span>
-                <span class="letter">s</span>
-                <span class="letter"> </span>
-                <span class="letter">a</span>
-                <span class="letter">n</span>
-                <span class="letter">d</span>
-                <span class="letter"> </span>
-                <span class="letter">i</span>
-                <span class="letter">n</span>
-                <span class="letter">t</span>
-                <span class="letter">e</span>
-                <span class="letter">r</span>
-                <span class="letter">n</span>
-                <span class="letter">s</span>
-                <span class="letter">h</span>
-                <span class="letter">i</span>
-                <span class="letter">p</span>
-                <span class="letter">s</span>
-            </h2>
-            <h5 class="actions">Get Discovered. Get Hired.</h5>
-            <div class="actions">
-                <a href="/jobs" class="btn btn-lg btn-warning lbtn "> I'm a Job Seeker</a>
-                <a href="/register" class="btn btn-lg btn-warning lbtn "> I'm A Recruiter</a>
-            </div>
-        </div>
-
-        <div class="hero-image right">
-            <img src="images/banner.png" alt="banner">
-        </div>
+  <div class="container main d-flex">
+    <div class="left p-2 d-flex flex-column justify-content-center gap-4">
+      <h1 class="main-heading">A comprenhensive platform for reliable</h1>
+      <h2 class="text-black ml12">
+        <span class="letter">j</span>
+        <span class="letter">o</span>
+        <span class="letter">b</span>
+        <span class="letter"> </span>
+        <span class="letter">o</span>
+        <span class="letter">p</span>
+        <span class="letter">p</span>
+        <span class="letter">o</span>
+        <span class="letter">r</span>
+        <span class="letter">t</span>
+        <span class="letter">u</span>
+        <span class="letter">n</span>
+        <span class="letter">i</span>
+        <span class="letter">t</span>
+        <span class="letter">i</span>
+        <span class="letter">e</span>
+        <span class="letter">s</span>
+        <span class="letter"> </span>
+        <span class="letter">a</span>
+        <span class="letter">n</span>
+        <span class="letter">d</span>
+        <span class="letter"> </span>
+        <span class="letter">i</span>
+        <span class="letter">n</span>
+        <span class="letter">t</span>
+        <span class="letter">e</span>
+        <span class="letter">r</span>
+        <span class="letter">n</span>
+        <span class="letter">s</span>
+        <span class="letter">h</span>
+        <span class="letter">i</span>
+        <span class="letter">p</span>
+        <span class="letter">s</span>
+      </h2>
+      <h5 class="actions">Get Discovered. Get Hired.</h5>
+      <div class="actions">
+        <a href="/jobs" class="btn btn-lg btn-warning lbtn">
+          I'm a Job Seeker</a
+        >
+        <% if (locals.userEmail) { %>
+        <a href="/jobs" class="btn btn-lg btn-warning lbtn"
+          >Recruiter Dashboard</a
+        >
+        <% } else { %>
+        <a href="/register" class="btn btn-lg btn-warning lbtn">
+          I'm A Recruiter</a
+        >
+        <% } %>
+      </div>
     </div>
+
+    <div class="hero-image right">
+      <img src="images/banner.png" alt="banner" />
+    </div>
+  </div>
 </div>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    const textWrapper = document.querySelector('.ml12');
-    const letters = textWrapper.querySelectorAll('.letter');
+  document.addEventListener("DOMContentLoaded", function () {
+    const textWrapper = document.querySelector(".ml12");
+    const letters = textWrapper.querySelectorAll(".letter");
     const totalLetters = letters.length;
     let isReappearing = false;
 
     function animateLetters() {
-        if (!isReappearing) {
-            // Disappearing animation
-            letters.forEach((letter, index) => {
-                setTimeout(() => {
-                    letter.classList.add('disappear');
-                    letter.classList.remove('reappear');
-                }, index * 50); // Decreased delay per letter to 50ms
-            });
+      if (!isReappearing) {
+        // Disappearing animation
+        letters.forEach((letter, index) => {
+          setTimeout(() => {
+            letter.classList.add("disappear");
+            letter.classList.remove("reappear");
+          }, index * 50); // Decreased delay per letter to 50ms
+        });
 
-            // Wait for all letters to disappear, then toggle
-            setTimeout(() => {
-                isReappearing = true;
-                animateLetters();
-            }, totalLetters * 50 + 200); // Decreased pause to 200ms
-        } else {
-            // Reappearing animation
-            letters.forEach((letter, index) => {
-                setTimeout(() => {
-                    letter.classList.remove('disappear');
-                    letter.classList.add('reappear');
-                }, index * 50); // Decreased delay per letter to 50ms
-            });
-            
-            // Wait for all letters to reappear, then reset
-            setTimeout(() => {
-                isReappearing = false;
-                animateLetters();
-            }, totalLetters * 50 + 200);
-        }
+        // Wait for all letters to disappear, then toggle
+        setTimeout(() => {
+          isReappearing = true;
+          animateLetters();
+        }, totalLetters * 50 + 200); // Decreased pause to 200ms
+      } else {
+        // Reappearing animation
+        letters.forEach((letter, index) => {
+          setTimeout(() => {
+            letter.classList.remove("disappear");
+            letter.classList.add("reappear");
+          }, index * 50); // Decreased delay per letter to 50ms
+        });
+
+        // Wait for all letters to reappear, then reset
+        setTimeout(() => {
+          isReappearing = false;
+          animateLetters();
+        }, totalLetters * 50 + 200);
+      }
     }
 
     // Start the animation loop
     animateLetters();
-});
+  });
 </script>

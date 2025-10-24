@@ -4,7 +4,7 @@
       <div class="card job-card p-5 shadow-lg">
         <div class="card-body">
           <h1 class="display-5 fw-bold text-white mb-4 text-center">
-            Applicants for Full Stack Developer
+            Applicants for <%= job ? job.jobdesignation : 'Job' %>
           </h1>
 
           <div class="table-responsive">
@@ -21,54 +21,55 @@
                 </tr>
               </thead>
               <tbody>
+                <% if (Array.isArray(applicants) && applicants.length > 0) { %>
+                <% applicants.forEach(function(app, idx) { %>
                 <tr>
-                  <th scope="row">1</th>
-                  <td>John Doe</td>
-                  <td>john.doe@example.com</td>
-                  <td>+1 555-123-4567</td>
+                  <th scope="row"><%= idx + 1 %></th>
+                  <td><%= app.name %></td>
+                  <td><%= app.email %></td>
+                  <td><%= app.contact || 'N/A' %></td>
                   <td>
-                    <a href="#" class="text-white-50 text-decoration-none"
+                    <% if (app.resumepath) { %>
+                    <a
+                      href="/download-resume/<%= app.id %>"
+                      class="text-white-50 text-decoration-none"
+                      target="_blank"
                       >View Resume</a
                     >
+                    <% } else { %>
+                    <span class="text-white-50">No resume</span>
+                    <% } %>
                   </td>
                 </tr>
+                <% }); %> <% } else { %>
                 <tr>
-                  <th scope="row">2</th>
-                  <td>Jane Smith</td>
-                  <td>jane.smith@example.com</td>
-                  <td>+1 555-987-6543</td>
-                  <td>
-                    <a href="#" class="text-white-50 text-decoration-none"
-                      >View Resume</a
-                    >
+                  <td colspan="5" class="text-center text-white-50">
+                    No applicants have applied for this job yet.
                   </td>
                 </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Peter Jones</td>
-                  <td>peter.jones@example.com</td>
-                  <td>+1 555-555-5555</td>
-                  <td>
-                    <a href="#" class="text-white-50 text-decoration-none"
-                      >View Resume</a
-                    >
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">4</th>
-                  <td>Alice Williams</td>
-                  <td>alice.williams@example.com</td>
-                  <td>+1 555-111-2222</td>
-                  <td>
-                    <a href="#" class="text-white-50 text-decoration-none"
-                      >View Resume</a
-                    >
-                  </td>
-                </tr>
+                <% } %>
               </tbody>
             </table>
           </div>
         </div>
+        <!-- Applicants pagination -->
+        <% if (typeof totalPages !== 'undefined' && totalPages > 1) { %>
+        <nav aria-label="Applicants pagination" class="mt-3">
+          <ul class="pagination justify-content-center">
+            <% for (var p = 1; p <= totalPages; p++) { %>
+            <li
+              class="page-item <%= (p === (currentPage || 1)) ? 'active' : '' %>"
+            >
+              <a
+                class="page-link"
+                href="/applicants/<%= job.id %>?page=<%= p %>"
+                ><%= p %></a
+              >
+            </li>
+            <% } %>
+          </ul>
+        </nav>
+        <% } %>
       </div>
     </div>
   </div>

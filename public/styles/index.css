@@ -324,3 +324,22 @@ body::-webkit-scrollbar {
 }
 
 /* ===================== End Job Details Card & Modal Styles ===================== */
+
+/* Navbar profile button sizing: match search button height and let width adapt to content */
+.profile-btn {
+  /* Bootstrap form-control height approximation so buttons align neatly */
+  height: calc(1.5em + 0.75rem + 2px);
+  display: inline-flex;
+  align-items: center;
+  width: auto;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.profile-btn i {
+  /* keep icon comfortably sized inside the button */
+  font-size: 1.25rem;
+  line-height: 1;
+}
+.profile-btn span {
+  white-space: nowrap;
+}

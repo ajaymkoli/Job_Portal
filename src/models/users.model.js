@@ -1,5 +1,5 @@
-export default class UserModel{
-    constructor(id, name, email, mobile, password){
+export default class UserModel {
+    constructor(id, name, email, mobile, password) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -7,25 +7,29 @@ export default class UserModel{
         this.password = password;
     }
 
-    static add(name,email,mobile,password){
+    static add(name, email, mobile, password) {
         const newUser = new UserModel(users.length + 1, name, email, mobile, password);
         const exist = users.find((u) => u.email == email || u.mobile == mobile);
-        if(!exist){
+        if (!exist) {
             users.push(newUser);
             console.log(users);
             return true;
-        } else{
+        } else {
             return false;
         }
     }
 
-    static isValidUser(email,password){
+    static isValidUser(email, password) {
         const result = users.find((u) => u.email == email && u.password == password);
         return result;
     }
 
-    static getUser(email,password){
+    static getUser(email, password) {
         return users.find((u) => u.email == email && u.password == password);
+    }
+
+    static getUserByEmail(email) {
+        return users.find((u) => u.email == email) || null;
     }
 }
 
@@ -36,5 +40,12 @@ const users = [
         email: "ajaymkoli.544@gmail.com",
         mobile: "8767674098",
         password: "2318@Ajay",
+    },
+    {
+        id: 2,
+        name: "Recruiter One",
+        email: "recruiter1@example.com",
+        mobile: "9999999999",
+        password: "password",
     },
 ];
