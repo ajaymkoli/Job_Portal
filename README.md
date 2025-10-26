@@ -158,6 +158,7 @@ Important: If you supply real Gmail credentials, use an App Password (not your m
 ![Recruiter Login](/docs/screenshots/04_login.png)
 
 4. Profile Section
+
 ![Profile section](/docs/screenshots/05_profile.png)
 
 5. Job Posting form
