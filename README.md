@@ -2,78 +2,41 @@
 
 A lightweight job portal built with Node.js, Express and EJS. Designed as a learning project and a simple recruiter/applicant workflow with protected resume uploads, recruiter-only controls, paginated listings, and real email confirmations (Gmail supported).
 
+![Homepage](/docs/screenshots/01_home.png)
+
 ---
 
 ## Table of contents
 
-- Project overview
-- Features
-- System requirements
-- Quick start (local)
-- Environment variables
-- File structure
-- Data models (in-memory)
-- Routes / API overview
-- Uploads & security
-- Email sending (nodemailer + Gmail)
-- How to take and attach screenshots
-- Troubleshooting & tips
-- Contributing
-- License
+# Easily — Job Portal
 
----
+Easily is a compact, server-rendered job board built with Node.js, Express and EJS. It demonstrates a simple recruiter/applicant workflow with protected resume uploads and optional email confirmations.
 
-## Project overview
+Highlights
 
-Easily is a small job board / portal suitable for demonstrations, interviews and learning. It uses server-side rendered EJS views and a minimal in-memory data store (no database) so you can run it quickly locally. Features include recruiting flows (post/edit/delete jobs), applicants with resume uploads (stored in a protected folder), recruiter-only applicant views and protected resume download, and confirmation emails sent to applicants.
+- Server-rendered EJS views
+- Recruiter features: post/edit/delete jobs and view applicants
+- Applicant features: apply with resume upload (stored in `uploads/resumes` and protected)
+- Resume downloads restricted to the job poster
+- Email confirmations via nodemailer (Gmail app password supported)
 
-This repo is intentionally compact and easy to extend into a production-ready app (by adding a database, user authentication provider, persistent storage, etc.).
+Run locally (short)
 
----
-
-## Features
-
-- Server: Node.js + Express (ES modules)
-- Views: EJS templating
-- Sessions: express-session for login & recruiter flows
-- Uploads: multer saves resumes to `uploads/resumes` (protected, not served by static)
-- Job CRUD: post, edit, delete (recruiter-only)
-- Applicants: apply with resume, duplicate prevention (by email or mobile), protected download
-- Email: confirmation mails using nodemailer (supports Gmail app password)
-- Validation: express-validator rules on job posting and application
-- Pagination & search for job listings
-- Minimal in-memory models (users, jobs, applicants) to keep project simple and portable
-
----
-
-## System requirements (basic)
-
-- Node.js 16+ (LTS recommended)
-- npm (comes with Node)
-- Modern browser for UI (Chrome/Edge/Firefox)
-- Optional: Gmail account with an App Password if you want real email delivery (recommended)
-
----
-
-## Quick start (local)
-
-1. Clone the repository and install dependencies
+1. Install:
 
 ```powershell
-git clone <repo-url> jobportal
-cd jobportal
 npm install
 ```
 
-2. Create environment variables (see next section). You can use PowerShell to set them for the session:
+2. Optionally set a session secret and SMTP credentials (PowerShell example):
 
 ```powershell
-$env:SMTP_USER='your@gmail.com'; $env:SMTP_PASS='your_gmail_app_password'; $env:SESSION_SECRET='some_long_secret'; $env:APP_BASE_URL='http://localhost:3000'
+$env:SESSION_SECRET='change_this'
+$env:SMTP_USER='your@gmail.com'
+$env:SMTP_PASS='your_gmail_app_password'
 ```
 
-Alternatively create a `.env` file (not committed) using the `.env.example` as a template and use your preferred method to load it.
-
-3. Start the app
+3. Start and open `http://localhost:3000`
 
 ```powershell
 npm start
@@ -81,46 +44,25 @@ npm start
 node index.js
 ```
 
-4. Open http://localhost:3000 in your browser.
+Notes
 
----
+- In-memory storage resets on restart; swap in a DB for persistence in production.
+- If SMTP is not configured the app falls back to a test transport (Ethereal) for local email inspection.
 
-## Environment variables
+Important files
 
-The app reads configuration from environment variables. Required/important variables:
+- `index.js` — app entry
+- `src/controllers/` — handlers (jobs, users)
+- `src/middlewares/` — auth, validation, email
+- `src/models/` — in-memory models
+- `src/utils/mailer.js` — nodemailer helper
+- `views/` — EJS templates
+- `uploads/resumes/` — uploaded resumes (protected)
 
-- `PORT` — port to run on (default: 3000)
-- `SESSION_SECRET` — session signing secret (required for production)
-- `SMTP_USER` — SMTP username (for Gmail put your email here)
-- `SMTP_PASS` — SMTP password or Gmail App Password
-- `SMTP_HOST` — optional: custom SMTP host (if not provided, Gmail is used when SMTP_USER/PASS set)
-- `SMTP_PORT` — optional
-- `EMAIL_FROM` — optional friendly From header (e.g. "Easily <no-reply@easily.local>")
-- `APP_BASE_URL` — optional base url used in email links (default `http://localhost:3000`)
+Security
 
-Create a `.env` from the example or export them in your shell before starting.
-
----
-
-## Example `.env.example`
-
-```text
-# Server
-PORT=3000
-SESSION_SECRET=change-me-to-a-secure-string
-
-# Mail (Gmail recommended if you only set SMTP_USER & SMTP_PASS)
-SMTP_USER=youremail@gmail.com
-SMTP_PASS=your_gmail_app_password
-# Optional (only if using a different SMTP provider)
-SMTP_HOST=
-SMTP_PORT=
-EMAIL_FROM=Easily <no-reply@easily.local>
-
-# Base URL used in emails
-APP_BASE_URL=http://localhost:3000
-```
-
+- Resumes are not served from `public/`; downloads are gated to the job poster only.
+- Duplicate or invalid applications result in immediate cleanup of uploaded files.
 ---
 
 ## File structure (important files)
@@ -205,32 +147,42 @@ Important: If you supply real Gmail credentials, use an App Password (not your m
 
 ## Screenshots
 
-1. `screenshots/01_home.png` — Homepage / job listings (show search bar and a few job cards)
-2. `screenshots/02_job_details.png` — Job details view for a normal user (Apply Now button visible)
-3. `screenshots/03_job_details_recruiter.png` — Job details view for the recruiter (Edit/Delete and View Applicants visible, delete modal open)
-4. `screenshots/04_apply_modal.png` — Apply modal with form fields (name, email, mobile, resume upload)
-5. `screenshots/05_applicants_list.png` — Recruiter applicants page showing applicant rows and download resume button
-6. `screenshots/06_email_sample.png` — Example of the confirmation email received by applicant (HTML view)
+1. About Page
+![Aboutpage](/docs/screenshots/02_about1.png)
+![Aboutpage](/docs/screenshots/02_about2.png)
 
-Instruction: After you take each screenshot, add it to `docs/screenshots/` and then in this README replace the placeholder text with a markdown image link, e.g.:
+2. Registration Page
+![Recruiter Registration](/docs/screenshots/03_register.png)
 
-```md
-![Homepage](/docs/screenshots/01_home.png)
-```
+3. Login Page
+![Recruiter Login](/docs/screenshots/04_login.png)
 
-Below are embedded placeholder images (SVG) already added to `docs/screenshots/` so the README shows previews immediately. Replace them with your screenshots (PNG) using the same filenames when ready.
+4. Profile Section
+![Profile section](/docs/screenshots/05_profile.png)
 
-![Homepage](/docs/screenshots/01_home.png)
+5. Job Posting form
+![Job posting form](/docs/screenshots/06_job_posting.png)
 
-![Job details (user)](/docs/screenshots/02_job_details.png)
+6. Job Listings
+![Job Listings](/docs/screenshots/07_job_listings.png)
 
-![Job details (recruiter)](/docs/screenshots/03_job_details_recruiter.png)
+7. Job details view for a normal user (Apply Now button visible)
+![Job Details normal](/docs/screenshots/08_job_details.png)
 
-![Apply modal](/docs/screenshots/04_apply_modal.png)
+8. Job details view for the recruiter (Edit/Delete and View Applicants visible, delete modal open)
+![Job details recruiter](/docs/screenshots/09_job_details_recruiter.png)
 
-![Applicants list](/docs/screenshots/05_applicants_list.png)
+9. Apply modal with form fields (name, email, mobile, resume upload)
+![apply modal](/docs/screenshots/10_apply.png)
 
-![Email sample](/docs/screenshots/06_email_sample.png)
+10. Applicants view for recruiters
+![Applicants](/docs/screenshots/11_applicants.png)
+
+11. Email confirmation sent
+![Email confirmation](/docs/screenshots/12_email.png)
+
+12. Footer
+![Footer](/docs/screenshots/13_footer.png)
 
 ---
 
