@@ -147,42 +147,42 @@ Important: If you supply real Gmail credentials, use an App Password (not your m
 
 ## Screenshots
 
-1. About Page
+### About Page
 ![Aboutpage](/docs/screenshots/02_about1.png)
 ![Aboutpage](/docs/screenshots/02_about2.png)
 
-2. Registration Page
+### Registration Page
 ![Recruiter Registration](/docs/screenshots/03_register.png)
 
-3. Login Page
+### Login Page
 ![Recruiter Login](/docs/screenshots/04_login.png)
 
-4. Profile Section
+### Profile Section
 
 ![Profile section](/docs/screenshots/05_profile.png)
 
-5. Job Posting form
+### Job Posting form
 ![Job posting form](/docs/screenshots/06_job_posting.png)
 
-6. Job Listings
+### Job Listings
 ![Job Listings](/docs/screenshots/07_job_listings.png)
 
-7. Job details view for a normal user (Apply Now button visible)
+### Job details view for a normal user (Apply Now button visible)
 ![Job Details normal](/docs/screenshots/08_job_details.png)
 
-8. Job details view for the recruiter (Edit/Delete and View Applicants visible, delete modal open)
+### Job details view for the recruiter (Edit/Delete and View Applicants visible, delete modal open)
 ![Job details recruiter](/docs/screenshots/09_job_details_recruiter.png)
 
-9. Apply modal with form fields (name, email, mobile, resume upload)
+### Apply modal with form fields (name, email, mobile, resume upload)
 ![apply modal](/docs/screenshots/10_apply.png)
 
-10. Applicants view for recruiters
+### Applicants view for recruiters
 ![Applicants](/docs/screenshots/11_applicants.png)
 
-11. Email confirmation sent
+### Email confirmation sent
 ![Email confirmation](/docs/screenshots/12_email.png)
 
-12. Footer
+### Footer
 ![Footer](/docs/screenshots/13_footer.png)
 
 ---
